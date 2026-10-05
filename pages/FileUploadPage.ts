@@ -14,6 +14,16 @@ export class FileUploadPage
     readonly multiFileInput: Locator;
     readonly multipleFilesDisplay : Locator;
 
+    // FU_006
+
+    readonly fileTypeInput: Locator;
+    readonly fileTypeError: Locator;
+
+    // FU_010
+
+    readonly dropZoneLocator: Locator;
+    readonly fileNameDisplayInDropZoneLocator: Locator;
+
     constructor(page: Page)
     {
         this.page = page;
@@ -24,6 +34,12 @@ export class FileUploadPage
 
         this.multiFileInput =page.locator('[data-testid="fu-multi-input"]');
         this.multipleFilesDisplay =page.locator('[data-testid="result-s02"]');
+
+        this.fileTypeInput =page.locator('[data-testid="fu-type-input"]');
+        this.fileTypeError =page.locator('[data-testid="fu-type-error"]');
+
+        this.dropZoneLocator=page.locator('[data-testid="fu-drop-input"]');
+        this.fileNameDisplayInDropZoneLocator=page.locator('#result-s04');
     }
 
     async gotoFileUploadPage()
@@ -53,5 +69,33 @@ export class FileUploadPage
     {
       const fileCount =await this.multiFileInput.evaluate((input: HTMLInputElement) =>input.files?.length ?? 0);
       return fileCount;
+    }
+
+    // FU_006
+
+    async uploadInvalidFileType()
+    {
+      await this.fileTypeInput.setInputFiles('tests/fixtures/invalid.txt');
+    }
+
+    async isFileTypeErrorVisible()
+    {
+      return await this.fileTypeError.isVisible();
+    }
+
+    async getFileTypeErrorText()
+    {
+      return await this.fileTypeError.textContent();
+    }
+
+    //FU_010
+    
+    async uploadFileInDropZone()
+    {
+        await this.dropZoneLocator.setInputFiles('tests/fixtures/sample.pdf');
+    }
+    async getUploadedDropZoneFileName()
+    {
+        return await this.fileNameDisplayInDropZoneLocator.textContent();
     }
 }
