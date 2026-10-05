@@ -1,0 +1,1 @@
+Playwright + TypeScript + POM + API Testing Framework
