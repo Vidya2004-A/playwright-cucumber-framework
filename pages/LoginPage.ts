@@ -1,4 +1,5 @@
 import {Page,Locator} from '@playwright/test';
+import { ENV } from '../support/env';
 
 export class LoginPage
 {
@@ -18,7 +19,7 @@ export class LoginPage
     // Navigate to login page
     async gotoLoginPage() 
     {
-        await this.page.goto('https://www.saucedemo.com/');
+        await this.page.goto(ENV.SAUCE_URL);
     }
 
     // Perform login using username and password

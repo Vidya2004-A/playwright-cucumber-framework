@@ -1,4 +1,5 @@
 import {Page,Locator} from '@playwright/test';
+import { ENV } from '../support/env';
 
 export class DatePickerPage
 {
@@ -39,7 +40,7 @@ export class DatePickerPage
     // Navigate to Date Picker page
     async gotoDatePickerPage(): Promise<void>
     {
-        await this.page.goto('https://qaplayground.com/practice/date-picker');
+        await this.page.goto(`${ENV.QA_PLAYGROUND_URL}/practice/date-picker`);
     }
 
     // DP_001

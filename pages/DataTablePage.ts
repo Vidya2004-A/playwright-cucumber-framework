@@ -1,4 +1,5 @@
 import { Page, Locator } from "@playwright/test";
+import { ENV } from '../support/env';
 
 export class DataTablePage
 {
@@ -38,7 +39,7 @@ export class DataTablePage
     // Navigate to Data Table page
     async gotoDatatablePage()
     {
-       await this.page.goto("https://qaplayground.com/practice/data-table");
+       await this.page.goto(`${ENV.QA_PLAYGROUND_URL}/practice/data-table`);
     }
 
     //tc1

@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { chromium } from '@playwright/test';
+import { ENV } from '../support/env';
 import { LoginPage } from '../pages/LoginPage';
 import { CustomWorld } from '../support/world';
 
@@ -12,7 +12,10 @@ Given('User launches SauceDemo application', async function (this:CustomWorld) {
 });
 When('User enters valid credentials', async function (this:CustomWorld) {
     // enter username and password
-    await loginPage.login('standard_user','secret_sauce');
+    console.log('USERNAME:', ENV.SAUCE_USERNAME);
+    console.log('PASSWORD:', ENV.SAUCE_PASSWORD);
+    await loginPage.login(ENV.SAUCE_USERNAME,ENV.SAUCE_PASSWORD);
+    
 });
 When('User clicks Login button', async function (this:CustomWorld) {
     // click login button

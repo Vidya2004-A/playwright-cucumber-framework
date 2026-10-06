@@ -1,4 +1,5 @@
 import {Page,Locator} from '@playwright/test';
+import { ENV } from '../support/env';
 
 export class FileUploadPage
 {
@@ -45,7 +46,7 @@ export class FileUploadPage
     // Navigate to File Upload page
     async gotoFileUploadPage()
     {
-        await this.page.goto('https://qaplayground.com/practice/file-upload');
+        await this.page.goto(`${ENV.QA_PLAYGROUND_URL}/practice/file-upload`);
     }
 
     // FU_001
