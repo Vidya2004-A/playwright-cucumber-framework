@@ -71,35 +71,21 @@ export class DataTablePage
 
        for (let pageNumber = 1;pageNumber <= totalPages;pageNumber++)
        {
-        /*
-         * Page 1 is already open.
-         * Therefore, click page buttons only from page 2.
-         */
         if (pageNumber > 1)
         {
             const pageButton = this.page.locator(`button:text-is("${pageNumber}")`);
 
             await pageButton.click();
-            /*
-             * Wait until the row-count indicator confirms
-             * that the selected page has loaded.
-             */
+            
             await this.page.locator('[data-testid="row-count"]',{hasText:`page ${pageNumber} of ${totalPages}`}).waitFor({state: 'visible'});
         }
-        /*
-         * Search for the author only among the rows
-         * visible on the current table page.
-         */
+        
         const matchingAuthorRow =this.bookRows.filter({hasText: authorName});
 
         const matchingRowCount =await matchingAuthorRow.count();
 
         if (matchingRowCount > 0)
         {
-            /*
-             * Locate and click the Edit button only
-             * inside the matching author's row.
-             */
             await matchingAuthorRow.first().locator('[data-testid="btn-edit-book"]').click();
             return;
         }
