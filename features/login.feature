@@ -5,8 +5,6 @@ Scenario: Successful Login
 
 Given User launches SauceDemo application
 
-When User enters valid credentials
-
-And User clicks Login button
+When User enters valid credentials and clicks Login button
 
 Then User should navigate to Products page
