@@ -42,13 +42,14 @@ export class FileUploadPage
         this.fileNameDisplayInDropZoneLocator=page.locator('#result-s04');
     }
 
+    // Navigate to File Upload page
     async gotoFileUploadPage()
     {
         await this.page.goto('https://qaplayground.com/practice/file-upload');
     }
 
     // FU_001
-
+    // Upload a single file
     async uploadSingleFile()
     {
         await this.singleFileInput.setInputFiles('tests/fixtures/sample.pdf');
@@ -58,13 +59,15 @@ export class FileUploadPage
     {
         return await this.fileNameDisplay.textContent();
     }
-    // FU_002
 
+    // FU_002
+    // Upload multiple files
     async uploadMultipleFiles()
     {
        await this.multiFileInput.setInputFiles(['tests/fixtures/file1.pdf','tests/fixtures/file2.png']);
     }
 
+    // Get uploaded file count
     async getUploadedFileCount()
     {
       const fileCount =await this.multiFileInput.evaluate((input: HTMLInputElement) =>input.files?.length ?? 0);
@@ -72,28 +75,32 @@ export class FileUploadPage
     }
 
     // FU_006
-
+    // Upload an invalid file type
     async uploadInvalidFileType()
     {
       await this.fileTypeInput.setInputFiles('tests/fixtures/invalid.txt');
     }
 
+    // Verify file type error visibility
     async isFileTypeErrorVisible()
     {
       return await this.fileTypeError.isVisible();
     }
 
+    // Get file type error message
     async getFileTypeErrorText()
     {
       return await this.fileTypeError.textContent();
     }
 
     //FU_010
-    
+    // Upload file through the drop zone
     async uploadFileInDropZone()
     {
         await this.dropZoneLocator.setInputFiles('tests/fixtures/sample.pdf');
     }
+
+    // Get uploaded file name from drop zone
     async getUploadedDropZoneFileName()
     {
         return await this.fileNameDisplayInDropZoneLocator.textContent();

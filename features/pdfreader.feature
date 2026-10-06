@@ -1,5 +1,4 @@
 @PDF_001
-
 Feature: PDF Reader
 
   Scenario: Verify PDF content can be read and validated

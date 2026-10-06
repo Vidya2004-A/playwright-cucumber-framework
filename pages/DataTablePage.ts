@@ -34,37 +34,50 @@ export class DataTablePage
 
         this.rowCount=page.locator('tbody tr');
     }
+
+    // Navigate to Data Table page
     async gotoDatatablePage()
     {
        await this.page.goto("https://qaplayground.com/practice/data-table");
     }
+
     //tc1
+    // Read all table header names
     async readHeaders()
     {
        const headers =await this.headers.allTextContents();
        return headers.map(header => header.replace('⇅', '').trim());
     }
+
     //tc2
+    // Wait until table rows are visible
     async waitForTableRows()
     {
        await this.rows.first().waitFor({state: 'visible'});
     }
+
+    // Get the total number of rows displayed
     async rowsCount()
     {   
        return await this.rows.count();
     }
+
+    // Get row count indicator text
     async getRowCountIndicatorText()
     {
        const indicatorText = await this.rowCountIndicator.textContent();
        return indicatorText?.trim() ?? '';
     }
+
     //tc3
+    // Read book name from a specific table cell
     async readingbookNameCell()
     {
        return await this.bookNameCell.textContent();
     } 
 
     //tc4
+    // Find author and click the edit button
     async findAuthorAndClickEdit(authorName: string): Promise<void>
     {
        const totalPages = 5;
@@ -93,16 +106,20 @@ export class DataTablePage
         throw new Error(`Author "${authorName}" was not found ` +'on any table page.');
     }
 
+    // Verify edit dialog is visible
     async isEditDialogVisible(): Promise<boolean>
     {
         return await this.editDialog.isVisible();
     }
     
     //tc5
+    // Get total row count from the table
     async getRowCount()
     {
         return await this.rowCount.count();
     }
+
+    // Verify first row is visible
     async isFirstRowVisible(): Promise<boolean>
     {
         return await this.rowCount.first().isVisible();

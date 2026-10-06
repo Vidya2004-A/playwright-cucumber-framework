@@ -36,37 +36,40 @@ export class DatePickerPage
         this.resultDisplayPanel = page.locator('#result-s02');
     }
 
+    // Navigate to Date Picker page
     async gotoDatePickerPage(): Promise<void>
     {
         await this.page.goto('https://qaplayground.com/practice/date-picker');
     }
 
     // DP_001
-
+    // Enter date into the input field
     async enterTheDate(date: string): Promise<void>
     {
         await this.dateInputBox.fill(date);
     }
 
+    // Get the entered date from the input field
     async getEnteredDate(): Promise<string>
     {
         return await this.dateInputBox.inputValue();
     }
 
     // DP_002
-
+    // Open the calendar widget
     async clickCalendarTrigger(): Promise<void>
     {
         await this.calendarTrigger.click();
     }
 
+    // Verify calendar panel visibility
     async isCalendarPanelVisible(): Promise<boolean>
     {
         return await this.calendarPanel.isVisible();
     }
 
     // DP_003
-
+    // Navigate to the target month and select the required date
     async navigateToAndSelectDate(targetDateString: string): Promise<void>
     {
         const targetDate = new Date(`${targetDateString}T00:00:00`);
@@ -100,6 +103,7 @@ export class DatePickerPage
         await targetDayButton.click();
     }
 
+    // Get the selected date result text
     async getResultDisplayText(): Promise<string>
     {
         const resultText =await this.resultDisplayPanel.textContent();
