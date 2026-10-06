@@ -12,13 +12,13 @@ Scenario: Verify date can be typed into a native date input
 Scenario: Verify calendar opens on trigger click
 
   Given User navigates to Date picker page
-  When User clicks calender trigger
+  When User clicks calendar trigger
   Then Verify calendar panel is visible
 
 @DP_003
 Scenario: Verify a specific day can be selected from the calendar
 
   Given User navigates to Date picker page
-  When User clicks calendar trigger
+  When User clicks calendar trigger 
   And User navigates to and selects date "2025-07-20"
   Then Verify the result display contains "2025-07-20"
